@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das Baumhausprojekt von Leon & Matteo | Stubaital</title>
+    
+    <!-- SEO Metadaten -->
+    <meta name="description" content="Das große Baumhaus-Projekt der 15-jährigen Freunde Leon Falkner und Matteo Thurner im Stubaital. Erbaut mit 8x 240 Schrauben, Holz von Verwandten, Unterstützung vom Stubaier Gletscher und IKEA-LEDs.">
+    <meta name="keywords" content="Baumhaus, Leon Falkner, Matteo Thurner, Stubaital, Neustift im Stubaital, Staudamm Kampl, 8x 240 Schrauben, Stubaier Gletscher, IKEA LEDs, Holzbau, Jugendprojekt, Selbstbau, Abenteuer, Wald, Baumhausprojekt, Zimmerei Weber">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           CSS VARIABLEN (Farbschema: Wald & LED-Blau)
+           ========================================== */
+        :root {
+            --primary-bg: #121212;       
+            --secondary-bg: #1a2520;     
+            --card-bg: rgba(26, 37, 32, 0.8); 
+            --accent-blue: #00e5ff;      
+            --accent-purple: #7c4dff;    
+            --accent-wood: #d2914c;      
+            --text-light: #e0e0e0;       
+            --text-muted: #a0a0a0;       
+        }
+
+        /* Basis Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(124, 77, 255, 0.5);
+        }
+
+        /* Navigation */
+        header.navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: padding 0.3s ease;
+        }
+        header.navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        header.navbar .logo {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+        header.navbar nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        header.navbar nav ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        header.navbar nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 650px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('img/geruest.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 750px;
+            margin: 0 auto 40px auto;
+            color: #ccc;
+        }
+
+        /* Section Titles */
+        section {
+            padding: 100px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .creator-card, .fact-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 35px;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .creator-card:hover, .fact-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+        .creator-card h3, .fact-item h4 {
+            color: var(--accent-wood);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .creator-card p, .fact-item p {
+            color: #bbb;
+            font-size: 1rem;
+        }
+
+        .creators {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+        .creator-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.3);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.4s ease;
+            display: block;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.15) saturate(1.2) hue-rotate(-15deg); 
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Map & Standort */
+        .map-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+        .col-text, .col-map {
+            flex: 1;
+            min-width: 320px;
+        }
+        .col-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+        .col-text p {
+            margin-bottom: 15px;
+            color: #ccc;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 50px 20px 30px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .impressum-box {
+            background: rgba(30, 43, 38, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.8;
+        }
+        .impressum-box strong {
+            color: #fff;
+        }
+
+        .mt-40 { margin-top: 40px; }
+        .text-center { text-align: center; }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.3, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.3, 1);
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            header.navbar nav ul {
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #111;
+                padding: 20px;
+                display: none;
+            }
+            .hero-content h1 { font-size: 2.2rem; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">Baumhaus<span style="color:var(--accent-blue)">.projekt</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#ueber">Über uns</a></li>
+                    <li><a href="#fakten">Der Bau</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#standort">Standort</a></li>
+                    <li><a href="#kontakt">Impressum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="fade-in-up">Das Baumhausprojekt</h1>
+            <p class="fade-in-up" style="transition-delay: 0.2s;">
+                Ein grandioses Abenteuer von Leon Falkner & Matteo Thurner – zwei 15-jährigen Freunden, 
+                die im tiefen Wald von Neustift im Stubaital ein wahres Meisterwerk der Holzbaukunst erschaffen haben.
+            </p>
+            <a href="#ueber" class="btn fade-in-up" style="transition-delay: 0.4s;">Das Projekt entdecken</a>
+        </div>
+    </section>
+
+    <!-- ÜBER UNS / DIE MACHER -->
+    <section id="ueber" style="background-color: var(--primary-bg);">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>Die Macher des Projekts</h2>
+            </div>
+            <div class="creators">
+                <div class="creator-card fade-in-left">
+                    <h3>Leon Falkner</h3>
+                    <p>15 Jahre alt, kreativer Kopf und Hauptentwickler des gesamten Konzepts. Mit enormem Engagement trieb er die Umsetzung voran und war verantwortlich für die Details.</p>
+                </div>
+                <div class="creator-card fade-in-right">
+                    <h3>Matteo Thurner</h3>
+                    <p>15 Jahre alt, der starke Partner an Leons Seite. Gemeinsam meisterten sie den schweren Holzbau und die Installation der Technik im Baumhaus.</p>
+                </div>
+            </div>
+            <div class="text-center mt-40 fade-in-up">
+                <p style="max-width: 850px; margin: 0 auto; font-size: 1.1rem; color: #ccc;">
+                    Zwei Freunde, ein grosser Traum: Ein eigenes Baumhaus im Wald! Mit grossem Fleiss, Kreativität und der Unterstützung von Verwandten und regionalen Partnern haben sie das Unmögliche möglich gemacht. Der Bau startete im August und wurde bis zum letzten Detail Ende Oktober perfekt fertiggestellt.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAKTEN & DETAILS ZUM BAU -->
+    <section id="fakten" style="background-color: var(--secondary-bg);">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>Der Bau in Details & Zahlen</h2>
+            </div>
+            <div class="facts-grid">
+                <div class="fact-item fade-in-up">
+                    <h4>🔧 Die legendären 8x 240 Schrauben</h4>
+                    <p>Für das stabile Grundgerüst wurden 8 massive Schrauben der Größe 240 (8x 240 mm) verwendet – echte Monster-Schrauben, die das gesamte Trägergerüst sicher zusammenhalten.</p>
+                </div>
+                <div class="fact-item fade-in-up" style="transition-delay: 0.1s;">
+                    <h4>🌲 Holz-Spende von Verwandten</h4>
+                    <p>Die nötigen Baumaterialien wurden uns von einem lieben Verwandten großzügig zur Verfügung gestellt. Ohne diesen Support wäre der Bau nicht in dieser Form möglich gewesen.</p>
+                </div>
+                <div class="fact-item fade-in-up" style="transition-delay: 0.2s;">
+                    <h4>❄️ Unterstützung vom Stubaier Gletscher</h4>
+                    <p>Beim Auskleiden der Wände steuerte uns der Stubaier Gletscher bei – ein wertvoller Beitrage zur Isolation, der das Baumhaus auch kühler machte.</p>
+                </div>
+                <div class="fact-item fade-in-up" style="transition-delay: 0.3s;">
+                    <h4>💡 IKEA Ausstattung & LEDs</h4>
+                    <p>Die coole Beleuchtung mit farbigen LED-Strips, praktische Powerbanks für unterwegs und die gemütliche Deko stammen bequem vom IKEA – für das perfekte Baumhaus-Feeling!</p>
+                </div>
+                <div class="fact-item fade-in-up" style="transition-delay: 0.4s;">
+                    <h4>📅 Bauzeit: August bis Oktober</h4>
+                    <p>Der Bau startete im August und wurde mit dem letzten Detail Ende Oktober abgeschlossen. In nur knapp 3 Monaten entstand das voll funktionsfähige Waldparadies.</p>
+                </div>
+                <div class="fact-item fade-in-up" style="transition-delay: 0.5s;">
+                    <h4>🏗️ Regionale Handwerks Unterstützung</h4>
+                    <p>Durch regionale Betriebe wie die Zimmerei Weber erhielten die jungen Bauern wertvolle Tipps und professionelles Handwerkszeug für den sicheren Aufbau.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOTO GALERIE -->
+    <section id="galerie" style="background-color: var(--primary-bg);">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>Impressionen vom Bau</h2>
+            </div>
+            <div class="gallery">
+                <!-- Bild 1: Die große Schraube -->
+                <div class="gallery-item fade-in-up">
+                    <img src="img/schraube.jpg" alt="Die große Schraube 240">
+                    <div class="gallery-overlay">Die legendären 8x 240 Schrauben – das stärkste Fundament</div>
+                </div>
+                <!-- Bild 2: Der Holzstapel -->
+                <div class="gallery-item fade-in-up" style="transition-delay: 0.1s;">
+                    <img src="img/holz.jpg" alt="Holzstapel Spende">
+                    <div class="gallery-overlay">Das gelieferte Holz, bereit zum Bau</div>
+                </div>
+                <!-- Bild 3: Das Gerüst -->
+                <div class="gallery-item fade-in-up" style="transition-delay: 0.2s;">
+                    <img src="img/geruest.jpg" alt="Baumhaus Gerüst">
+                    <div class="gallery-overlay">Das rohe Gerüst zwischen den Kiefern</div>
+                </div>
+                <!-- Bild 4: Innenraum blau -->
+                <div class="gallery-item fade-in-up" style="transition-delay: 0.3s;">
+                    <img src="img/innen-blau.jpg" alt="Innenraum LED Beleuchtung blau">
+                    <div class="gallery-overlay">Coole LED-Beleuchtung von IKEA im Innenraum (blau)</div>
+                </div>
+                <!-- Bild 5: Innenraum neon rock hand -->
+                <div class="gallery-item fade-in-up" style="transition-delay: 0.4s;">
+                    <img src="img/innen-neon.jpg" alt="Innenraum Neon Rock Hand">
+                    <div class="gallery-overlay">Der gemütliche Rückzugsort mit Neon-Flair</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STANDORT & KARTE -->
+    <section id="standort" style="background-color: var(--secondary-bg);">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>Standort & Lage im Wald</h2>
+            </div>
+            <div class="row">
+                <div class="col-text fade-in-left">
+                    <h3>Neustift im Stubaital</h3>
+                    <p>Das Baumhaus befindet sich in einer wunderschönen, abgelegenen Waldlage nahe dem <strong>Staudamm Kampl</strong> in Neustift im Stubaital, Tirol.</p>
+                    <p><strong>Genauere Koordinaten:</strong> 47.124580, 11.341267</p>
+                    <p>Die exakte Lage im Wald bietet volle Privatsphäre, Natur pur und einen grossartigen Ausblick über das gesamte Stubaital. Perfekt für Abenteuer und Ruhe!</p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=47.124580,11.341267" class="btn" style="margin-top: 20px;">Route zu Google Maps</a>
+                </div>
+                <div class="col-map fade-in-right">
+                    <div class="map-container">
+                        <!-- Exakter Standort: Staudamm Kampl / Neustift im Stubaital (47.124580, 11.341267) -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?center=47.124580,11.341267&zoom=15&language=de&q=47.124580,11.341267(Staudamm%20Kampl)"
+                            width="100%" height="100%" style="border:0;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT & IMPRESSUM -->
+    <section id="kontakt" style="background-color: var(--primary-bg);">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>Kontakt & Impressum</h2>
+            </div>
+            <div class="text-center fade-in-up" style="max-width: 650px; margin: 0 auto 40px auto; color: #ccc;">
+                <p>Für Fragen zum Projekt oder einfach nur um ein Feedback zu lassen, schreibt uns eine E‑Mail an Leon Falkner:</p>
+                <p style="font-size: 1.2rem; margin-top: 10px;"><strong>E‑Mail:</strong> <a href="mailto:lefalkner24@icloud.com" style="color: var(--accent-blue); font-weight:bold; font-size:1.2rem;">lefalkner24@icloud.com</a></p>
+            </div>
+
+            <div class="impressum-box fade-in-up">
+                <h3 style="color: #fff; font-family: 'Oswald', sans-serif; margin-bottom: 15px; font-size: 1.3rem;">Rechtlicher Hinweis / Impressum</h3>
+                <p><strong>Verantwortlich für den Inhalt (§ 5 TMG):</strong><br>
+                Leon Falkner & Matteo Thurner (in Zusammenarbeit mit den Eltern / Verwandten)<br>
+                Anschrift: Neustift im Stubaital, Österreich</p>
+                <p><strong>Kontakt:</strong> lefalkner24@icloud.com</p>
+                <p><strong>Haftungsausschluss (Haftung für Inhalte):</strong> Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir haben alle Anstrengungen unternommen, um eine korrekte und aktuelle Bereitstellung der Informationen zu gewährleisten. Für die Richtigkeit und Vollständigkeit übernehmen wir keine Gewährleistung.</p>
+                <p><strong>Urheberrecht:</strong> Alle Bilder, Texte und Grafiken auf dieser Website unterliegen dem Urheberrecht. Vervielfältigung, Verbreitung oder jede andere Nutzung bedarf der vorherigen schriftlichen Zustimmung der Erbauer.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Das Baumhausprojekt von Leon & Matteo. Alle Rechte vorbehalten.</p>
+            <p style="margin-top: 5px; font-size: 0.75rem;">Design & Code im Rahmen des Jugendprojekts erstellt.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Glattes Scrollen zu den Sektionen
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer: Animiert Elemente beim Hineinscrollen ins Sichtfeld
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animateElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
